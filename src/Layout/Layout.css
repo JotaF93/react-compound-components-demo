@@ -1,3 +1,15 @@
+/* CSS Variables - Global Theme System */
+:root {
+	/* Default Light Theme Variables */
+	--bg-primary: #ffffff;
+	--bg-secondary: #f8f9fa;
+	--bg-accent: #e9ecef;
+	--text-primary: #212529;
+	--text-secondary: #6c757d;
+	--border-color: #dee2e6;
+	--shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 /* Layout Base Styles */
 .layout {
 	display: grid;
@@ -16,6 +28,7 @@
 }
 
 .layout--light {
+	/* Light Theme Variables */
 	--bg-primary: #ffffff;
 	--bg-secondary: #f8f9fa;
 	--bg-accent: #e9ecef;
@@ -26,6 +39,7 @@
 }
 
 .layout--dark {
+	/* Dark Theme Variables */
 	--bg-primary: #1a1a1a;
 	--bg-secondary: #2d3748;
 	--bg-accent: #4a5568;
@@ -35,8 +49,11 @@
 	--shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.layout[data-sidebar-collapsed='true'] {
-	grid-template-columns: 80px 1fr;
+/* Solo aplicar el sidebar colapsado en desktop */
+@media (min-width: 769px) {
+	.layout[data-sidebar-collapsed='true'] {
+		grid-template-columns: 80px 1fr;
+	}
 }
 
 /* Header Styles */
@@ -168,8 +185,14 @@
 			'header'
 			'main'
 			'footer';
-		grid-template-columns: 1fr;
+		grid-template-columns: 1fr !important; /* Forzar una sola columna en mobile */
 		grid-template-rows: auto 1fr auto;
+		/* Forzar width y eliminar cualquier margen o padding residual */
+		width: 100vw;
+		max-width: 100vw;
+		margin: 0;
+		padding: 0;
+		overflow-x: hidden;
 	}
 
 	.layout-sidebar {
@@ -178,9 +201,11 @@
 		left: 0;
 		height: 100vh;
 		width: 280px;
-		z-index: 200;
+		z-index: 300;
 		transform: translateX(-100%);
 		transition: transform 0.3s ease;
+		/* Asegurar que no afecte el layout cuando está oculto */
+		grid-area: none;
 	}
 
 	.layout[data-sidebar-collapsed='false'] .layout-sidebar {
@@ -189,6 +214,55 @@
 
 	.layout-main {
 		margin-left: 0;
+		/* Asegurar que ocupe todo el ancho disponible */
+		width: 100%;
+		max-width: 100%;
+	}
+
+	.layout-header {
+		/* Asegurar que el header ocupe todo el ancho */
+		width: 100%;
+		max-width: 100%;
+	}
+
+	.layout-footer {
+		/* Asegurar que el footer ocupe todo el ancho */
+		width: 100%;
+		max-width: 100%;
+	}
+
+	/* Overlay/Backdrop para mobile cuando sidebar está abierto */
+	.layout-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.5);
+		z-index: 250;
+		backdrop-filter: blur(2px);
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0.3s ease, visibility 0.3s ease;
+		cursor: pointer;
+	}
+
+	.layout[data-sidebar-collapsed='false'] .layout-overlay {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	/* Asegurar que el header esté por encima del overlay pero debajo del sidebar */
+	.layout-header {
+		z-index: 275;
+		position: relative;
+	}
+}
+
+/* Ocultar overlay en desktop */
+@media (min-width: 769px) {
+	.layout-overlay {
+		display: none !important;
 	}
 }
 
@@ -231,4 +305,27 @@
 
 .layout-sidebar[data-collapsed='true'] .layout-nav-item__icon {
 	margin-right: 0;
+}
+
+/* Ocultar títulos y texto cuando el sidebar está colapsado */
+.layout-sidebar[data-collapsed='true'] h1,
+.layout-sidebar[data-collapsed='true'] h2,
+.layout-sidebar[data-collapsed='true'] h3,
+.layout-sidebar[data-collapsed='true'] h4,
+.layout-sidebar[data-collapsed='true'] h5,
+.layout-sidebar[data-collapsed='true'] h6,
+.layout-sidebar[data-collapsed='true'] p {
+	display: none;
+}
+
+/* Prevenir overflow de texto en sidebar colapsado */
+.layout-sidebar[data-collapsed='true'] {
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+/* Ajustar padding del contenido cuando está colapsado */
+.layout-sidebar[data-collapsed='true'] .layout-sidebar__content {
+	padding: 1rem 0.5rem;
+	text-align: center;
 }
