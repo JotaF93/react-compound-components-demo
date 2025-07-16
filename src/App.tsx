@@ -124,6 +124,9 @@ function App() {
 
 			<Layout.Footer>
 				<p>© 2024 Mi Aplicación Dashboard. Todos los derechos reservados.</p>
+				<a href='https://github.com/JotaF93/react-compound-components-demo'>
+					GitHub Repository
+				</a>
 			</Layout.Footer>
 		</Layout>
 	);
