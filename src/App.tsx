@@ -2,6 +2,7 @@ import Layout from './Layout';
 import './App.css';
 import Accordion from './Accordion';
 import Card from './Card';
+import ThreeScene from './ThreeJS';
 
 function App() {
 	return (
@@ -47,6 +48,11 @@ function App() {
 					<a href='#settings' className='layout-nav-item'>
 						<span className='layout-nav-item__icon'>⚙️</span>
 						<span className='layout-nav-item__text'>Configuración</span>
+					</a>
+
+					<a href='#experience3d' className='layout-nav-item'>
+						<span className='layout-nav-item__icon'>🌌</span>
+						<span className='layout-nav-item__text'>Experiencia 3D</span>
 					</a>
 				</nav>
 			</Layout.Sidebar>
@@ -120,6 +126,32 @@ function App() {
 						</Accordion.Body>
 					</Accordion.Item>
 				</Accordion>
+
+				{/* Sección de Experiencia 3D Espectacular */}
+				<section id='experience3d' style={{ marginTop: '3rem' }}>
+					<Card>
+						<Card.Header style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>
+							🌌 Experiencia 3D Inmersiva
+						</Card.Header>
+						<Card.Description style={{ marginBottom: '1rem' }}>
+							Las cards pueden contener contenido falopa tambien.
+						</Card.Description>
+					</Card>
+
+					<div
+						style={{
+							borderRadius: '0.5rem',
+							marginTop: '1rem',
+							position: 'relative',
+							width: '100%',
+							height: '100vh',
+							minHeight: '600px',
+						}}>
+						<Card padding='lg'>
+							<ThreeScene />
+						</Card>
+					</div>
+				</section>
 			</Layout.Main>
 
 			<Layout.Footer>
