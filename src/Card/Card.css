@@ -1,0 +1,126 @@
+/* Card Base Styles */
+.card {
+	background-color: var(--bg-secondary);
+	border: 1px solid var(--border-color);
+	border-radius: 0.5rem;
+	box-shadow: var(--shadow);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Padding Variants */
+.card--padding-sm {
+	padding: 1rem;
+}
+
+.card--padding-md {
+	padding: 1.5rem;
+}
+
+.card--padding-lg {
+	padding: 2rem;
+}
+
+/* Card Header Styles */
+.card-header {
+	margin: 0 0 0.5rem 0;
+	font-size: 1.125rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	line-height: 1.4;
+}
+
+/* Card Value Styles */
+.card-value {
+	margin: 0.5rem 0;
+	font-weight: 700;
+	line-height: 1.2;
+	color: var(--text-primary);
+}
+
+.card-value--sm {
+	font-size: 1.25rem;
+}
+
+.card-value--md {
+	font-size: 1.5rem;
+}
+
+.card-value--lg {
+	font-size: 2rem;
+}
+
+.card-value--xl {
+	font-size: 2.5rem;
+}
+
+/* Card Description Styles */
+.card-description {
+	margin: 0.5rem 0 0 0;
+	font-size: 0.875rem;
+	color: var(--text-secondary);
+	line-height: 1.5;
+}
+
+/* Card Content Styles */
+.card-content {
+	color: var(--text-secondary);
+	line-height: 1.6;
+}
+
+.card-content p {
+	margin: 0 0 0.75rem 0;
+}
+
+.card-content p:last-child {
+	margin-bottom: 0;
+}
+
+/* Utility Classes */
+.card--highlight {
+	border-color: #646cff;
+	background-color: rgba(100, 108, 255, 0.05);
+}
+
+.card--success {
+	border-color: #10b981;
+	background-color: rgba(16, 185, 129, 0.05);
+}
+
+.card--warning {
+	border-color: #f59e0b;
+	background-color: rgba(245, 158, 11, 0.05);
+}
+
+.card--error {
+	border-color: #ef4444;
+	background-color: rgba(239, 68, 68, 0.05);
+}
+
+/* Dark theme adjustments */
+.layout--dark .card:hover {
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	.card--padding-md {
+		padding: 1rem;
+	}
+
+	.card--padding-lg {
+		padding: 1.5rem;
+	}
+
+	.card-value--lg {
+		font-size: 1.75rem;
+	}
+
+	.card-value--xl {
+		font-size: 2rem;
+	}
+}
